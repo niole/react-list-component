@@ -16,6 +16,7 @@ var ReactList = React.createClass({
   },
   getInitialState: function() {
     console.log("getInitialState");
+
     var opArr = [];
     this.props.listElements.forEach( function(e) {
       opArr.push(0);
@@ -27,20 +28,17 @@ var ReactList = React.createClass({
   },
   componentDidMount: function() {
     console.log("componentDidMount");
+
     return ({ "opacityArray": this.state.opacityArray });
 
   },
   render: function() {
-    console.log("opacityArray");
-    console.log(this.state.opacityArray);
 
     return (
       <div>
         <h1>I am an Unordered List</h1>
         <ul>
           {this.props.listElements.map( function(listElt, i) {
-            console.log('this.stateofopacityarray[i]');
-            console.log(this.state.opacityArray[i]);
             return( <li style={{"opacity":this.state.opacityArray[i]}} id={i} onMouseOver={this.showElement}>{listElt}</li>);
             }.bind(this))
           }
@@ -50,13 +48,19 @@ var ReactList = React.createClass({
   },
   showElement: function(event) {
     event.preventDefault();
-    var targetID = event.target.id;
-    console.log("targetID");
-    console.log(targetID);
+    var targetID = parseInt(event.target.id);
 
-    this.state.opacityArray[targetID] = 1;
-    console.log("updated opacityArray");
-    console.log(this.state.opacityArray);
+    //write if statement saying if you're at the 0th index, show element. If
+    //you're at the 1 - nth index, then don't change opacity unless the previous arr[ind]=1
+
+    console.log(targetID);
+    console.log(parseInt(targetID));
+
+    if ( targetID === 0 && this.state.opacityArray[targetID] !== 1 || targetID !== 0 && this.state.opacityArray[targetID-1] === 1 && this.state.opacityArray[targetID] !== 1) {
+      console.log('this.state.opacityarray[targetid] and targetID:'+targetID);
+      console.log(this.state.opacityArray[targetID]);
+      this.state.opacityArray[targetID] = 1;
+    }
     this.setState( { "opacityArray": this.state.opacityArray} );
   }
 });
