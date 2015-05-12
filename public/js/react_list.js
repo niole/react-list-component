@@ -35,7 +35,7 @@ var ReactList = React.createClass({
   render: function() {
 
     return (
-      <div>
+      <div onClick={this.hideElement}>
         <h1>I am an Unordered List</h1>
         <ul>
           {this.props.listElements.map( function(listElt, i) {
@@ -53,15 +53,18 @@ var ReactList = React.createClass({
     //write if statement saying if you're at the 0th index, show element. If
     //you're at the 1 - nth index, then don't change opacity unless the previous arr[ind]=1
 
-    console.log(targetID);
-    console.log(parseInt(targetID));
-
     if ( targetID === 0 && this.state.opacityArray[targetID] !== 1 || targetID !== 0 && this.state.opacityArray[targetID-1] === 1 && this.state.opacityArray[targetID] !== 1) {
-      console.log('this.state.opacityarray[targetid] and targetID:'+targetID);
-      console.log(this.state.opacityArray[targetID]);
       this.state.opacityArray[targetID] = 1;
     }
     this.setState( { "opacityArray": this.state.opacityArray} );
+  },
+  hideElement: function(event) {
+    event.preventDefault();
+    var newArr = [];
+    this.props.listElements.forEach( function(e) {
+      newArr.push(0);
+    });
+    this.setState( { "opacityArray": newArr } );
   }
 });
 
