@@ -1,5 +1,33 @@
 /*styles will go in here*/
 
+h1 , div, h2 , li , ul {
+  font-family: Calibri, sans-serif;
+}
+
 h1 {
   color: #F0E;
+}
+
+.list-root {
+  width:200px;
+}
+
+div {
+  outline: 1px dashed red;
+  border-width: 4px;
+  border-color: #F0E;
+}
+
+.list-element {
+  -webkit-transition: list-element 1000ms ease-in, opacity 1000ms ease-in;
+  -moz-transition:    list-element 1000ms ease-in, opacity 1000ms ease-in;
+  -ms-transition:     list-element 1000ms ease-in, opacity 1000ms ease-in;
+  -o-transition:      list-element 1000ms ease-in, opacity 1000ms ease-in;
+  transition:         list-element 1000ms ease-in, opacity 1000ms ease-in;
+  display:block;
+  font-family: Calibri, sans-serif;
+  padding: 15px;,8px;,15px;,8px;
+  text-align: center;
+  word-wrap: break-word;
+
 }

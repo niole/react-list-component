@@ -36,13 +36,17 @@ var ReactList = React.createClass({
 
     return (
       <div onClick={this.hideElement}>
-        <h1>I am an Unordered List</h1>
-        <ul>
-          {this.props.listElements.map( function(listElt, i) {
-            return( <li style={{"opacity":this.state.opacityArray[i]}} id={i} onMouseOver={this.showElement}>{listElt}</li>);
-            }.bind(this))
-          }
-        </ul>
+        <div>
+          <h1>I am an Unordered List</h1>
+        </div>
+        <div>
+          <ul className="list-root">
+            {this.props.listElements.map( function(listElt, i) {
+              return( <div className="outline"><li className="list-element" style={{"opacity":this.state.opacityArray[i]}} id={i} onMouseOver={this.showElement}>{listElt}</li></div>);
+              }.bind(this))
+            }
+          </ul>
+        </div>
       </div>
     );
   },
